@@ -1,0 +1,221 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.image {
+    height: 100%;
+    width: 100%;
+    background: #55e6c5;
+    z-index: 1;
+    }
+
+ /* .content {
+    height: 1000px;
+    width:100%;
+    background: -webkit-linear-gradient(left, rgba(146, 135, 187, 0.8) 0%, rgba(0, 0, 0, 0.6) 100%);
+  background: linear-gradient(to right,lightgray, whitesmoke);
+    z-index: 2;
+    position: relative;
+}  */
+
+ .content {
+    height: 1000px;
+    width:100%;
+    background: url(../../assets/original.jpg) no-repeat center center fixed;
+    background-attachment: fixed;
+    background-position: fixed;
+    width: 100% ;
+    z-index: 2;
+    position: relative;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+} 
+
+
+.brand-logo a img:hover{
+width: 350px;
+}
+
+
+.content h1 {
+    font-size: 40px;
+    color: #464646;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    margin: 30px 60px;
+}
+.content p {
+    font-size:20px;
+    color: #343434;
+    font-family: 'Open Sans', sans-serif;
+    /* font-weight: 300; */
+    /* margin: 30px 60px; */
+}
+#wall_1 {
+    background: url(../../assets/pic.jpg) no-repeat;
+    background-attachment: fixed;
+    background-position: fixed;
+    min-height: 700px ;
+    width: 100% ;
+    /*opacity: 0.8;*/
+    -webkit-background-size: 100% ;
+    -moz-background-size: 100% ;
+    -o-background-size: 100% ;
+    background-size: 100% ;
+    -webkit-background-size: cover ;
+    -moz-background-size: cover ;
+    -o-background-size: cover ;
+    background-size: cover ;
+    -webkit-box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    -moz-box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    overflow: hidden;
+            
+}
+
+#video-background {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+  background-attachment: fixed;
+}
+
+#wall_2 {
+    background: url(../../assets/pic1.jpg) no-repeat;
+    background-attachment: fixed;
+    background-position: fixed;
+    min-height: 700px ;
+    width: 100% ;
+    /*opacity: 0.8;*/
+    -webkit-background-size: 100% ;
+    -moz-background-size: 100% ;
+    -o-background-size: 100% ;
+    background-size: 100% ;
+    -webkit-background-size: cover ;
+    -moz-background-size: cover ;
+    -o-background-size: cover ;
+    background-size: cover ;
+    -webkit-box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    -moz-box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    overflow: hidden;
+}
+#wall_3 {
+    background: url(../../assets/pic2.jpg) no-repeat;
+    background-attachment: fixed;
+    background-position: fixed;
+    min-height: 700px ;
+    width: 100% ;
+    /*opacity: 0.8;*/
+    -webkit-background-size: 100% ;
+    -moz-background-size: 100% ;
+    -o-background-size: 100% ;
+    background-size: 100% ;
+    -webkit-background-size: cover ;
+    -moz-background-size: cover ;
+    -o-background-size: cover ;
+    background-size: cover ;
+    -webkit-box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    -moz-box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    box-shadow: inset -3px -137px 169px -50px rgba(0,0,0,0.61) ;
+    overflow: hidden;
+}
+
+
+
+#nav {
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top:0;
+    left:0;
+    background: rgba(255,255,255,1);
+    z-index: 100;
+    -webkit-box-shadow:0px 0px 20px rgba(44,44,44,.3);
+}
+#nav #logo {
+    height: 40px;
+    width: 170px;
+    position: absolute;
+    top: 0;
+    bottom:0;
+    margin: auto 100px;
+}
+
+#nav #logo img {
+    height: 100%;
+    width: 100%;
+    
+}
+
+#content_1 {
+    position: relative;
+    z-index: -1;
+    display: block;
+    max-width: 100%;
+    height: auto;
+    min-height:650px; 
+    overflow:auto;
+}
+
+#content_2 {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    position: absolute;
+    min-height:650px; 
+    overflow:auto;
+    z-index: -400;
+
+}
+
+#content_3{
+    position: relative;
+}
+h1::first-letter {
+    font-size: 60px;
+    font-weight: 600;
+    color:#3cb0f8;
+}
+
+.fixed{
+    position: fixed;
+    top: 0;
+}
+
+.nav-placeholder{
+    margin 0 0 40px 0;
+}
+
+.login{
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    z-index: 1;
+ background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
+ background: linear-gradient(to right, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 100%);
+
+  -webkit-transition: opacity 0.1s, -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+  transition: opacity 0.1s, -webkit-transform 0.3s cubic-bezier(0.17, -0.65, 0.665, 1.25);
+
+  -webkit-transform: scale(1);
+          transform: scale(1);
+
+  margin:10px;
+  box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.6);
+          
+}   
+
+
+
+.z{
+    z-index: 100;
+}

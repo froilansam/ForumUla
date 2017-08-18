@@ -1,0 +1,203 @@
+doctype html
+html(lang='en')
+	head
+		 
+		meta(charset='UTF-8')
+		title Forumula
+		link(rel='shortcut icon', href='../assets/shortcut.png')
+		link(rel='stylesheet', type='text/css', href='../assets/css/style.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/materialize.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/feed.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/feed.min.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/card.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/card.min.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/modal.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/modal.min.css')
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300', rel='stylesheet', type='text/css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+		link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		link(rel='stylesheet', type='text/css', href='../assets/css/animate.css')
+		link(href='../assets/font-awesome-4.7.0/css/font-awesome.min.css', rel='stylesheet', type='text/css', media='all')
+		//Smooth Scrolling
+		style.
+			.header {
+			position: relative;
+			margin-bottom: -40px;
+			overflow: hidden;
+			}
+	body
+		ul#dropdown1.dropdown-content
+			li
+				a(href='http://localhost:3009/index/profile') Profile
+			
+			-if (puta.type === 'admin')
+				li
+					a(href='/index/admin') Admin Settings
+			li
+				a(href='/logout') Logout
+		nav
+			.nav-wrapper.pink.accent-4
+				.brand-logo
+						a(href='http://localhost:3009/index')
+							img(src="../assets/logo2.png" width="250")
+				ul#nav-mobile.right.hide-on-med-and-down
+					li
+						a(href='http://localhost:3009/index#content_2' style="font-family: century gothic;") Forums
+					li
+						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
+							| @#{puta.username}
+							i.material-icons.left person_pin
+				ul#mobile-demo.side-nav.grey.darken-3
+					li
+						.user-view
+							.background
+								img(src='../assets/pic.jpg')
+							a(href='http://localhost:3009/index/profile')
+								img.circle(src=`../assets/uploads/${puta.image}`)
+							a(href='#!name')
+								span.white-text.name @#{puta.username}
+							a(href='#!email')
+								span.white-text.email #{puta.email}
+					li
+						form(method="POST" id="myForm" onsubmit="return validateForm()" action=`/subforum/${categName}`)
+							.input-field.col.s12
+								input#textarea2.materialize-textarea(name="title", type='text')
+								label(for='textarea2') Title
+								.input-field.col.s12
+									textarea#textarea1.materialize-textarea(data-length="500" name="content", type='text')
+									label(for='textarea1') Thought
+									center
+							button.waves-effect.waves-light.btn-large(type='submit', name='submit' value='Shout')
+											| Shout
+											i.material-icons.right send
+			#content_2.content
+				br
+				.container
+					.container.login
+						center
+							h3(style="color:black; font-family: century gothic;") #{categName}
+					br
+					- if(users.length)
+						- for (i = 0; i < users.length; i++)
+							-if (puta.username == users[i].author)
+								.container.login
+									center
+										.label
+											img(src=`../assets/uploads/${puta.image}` style=" height: 50px; width: 50px;") 
+										a(style="margin:1px; font-weight: bold; Font-family: century gothic; Font-size: 25px; color: #ff3975; line-height:10px;" href = 'http://localhost:3009/index/profile') #{users[i].author}
+											a(style="font-weight: bold; Font-family: century gothic; Font-size: 10px; color: #ffffff;") #{date[i]}
+										.summary
+											p(style="font-weight: bold; Font-family: century gothic; Font-size: 30px; color: black;")  #{users[i].title}
+										.extra.text(datascroll= '' id=`${[i]}` style=" Font-family: century gothic; Font-size: 20px; color: black;")
+											| #{users[i].content}
+									.fixed-action-btn
+										a.btn-floating.btn-large.pink.darken-4
+											i.large.material-icons more_vert
+										ul
+											li
+												a.btn-floating.pink.lighten-3(href=`http://localhost:3009/subforum/${categName}/edit/${i}#${i}`)
+													i.material-icons mode_edit
+											li
+												a.btn-floating.pink(href=`http://localhost:3009/subforum/delete/${categName}/${users[i].intPostID}`)
+													i.material-icons delete
+								br
+							-else
+								.container.login
+									center
+										.label
+											-if(results.length)
+												-for (var x = 0 ; x < results.length; x++)
+													-if (results[x].username == users[i].author)
+														img(src=`../assets/uploads/${results[x].image}` style=" height: 50px; width: 50px;") 
+										a(style="margin:1px; font-weight: bold; Font-family: century gothic; Font-size: 25px; color: #ff3975; line-height:10px;" href=`http://localhost:3009/index/profile/${users[i].author}`) #{users[i].author}
+											a(style="font-weight: bold; Font-family: century gothic; Font-size: 10px; color: #ffffff;") #{date[i]}
+										.summary
+											p(style="font-weight: bold;Font-family: century gothic; Font-size: 30px; color: black;")  #{users[i].title}
+										.extra.text(style="Font-family: century gothic; Font-size: 20px; color: black;")
+											| #{users[i].content}
+								br
+					- else
+						.container.login
+									center
+										h3(style="color:Red; font-family: century gothic; font-size: 20px;") *No Post Here Yet, Shout!
+
+				br
+				br
+				span
+					span
+				a#shout.btn.btn-floating.btn-large.pink.pulse.fixed.fuck(href='#', data-activates='mobile-demo')
+					i.material-icons record_voice_over
+
+
+		script.
+			$('button').click(function(){
+			$('#fuck').toggleClass('closed');
+			});
+		// Import jQuery before materialize.js
+		script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script(type='text/javascript', src='../assets/js/materialize.min.js')
+		script(src='../assets/js/wow.min.js')
+		script.
+			new WOW().init();
+		//script(src='../assets/js/jquery.nicescroll.js')
+		script(src='../assets/js/smooth-scroll.js')
+		script.
+			smoothScroll.init();
+		script(type='text/javascript').
+			$('document').ready(function(){
+			$(".fuck").sideNav();
+			});
+		script(type='text/javascript').
+			$(document).ready(function(){
+			$("body").niceScroll();
+			$("#mobile-demo").niceScroll();
+			$("#mobile-demo").getniceScroll().resize();
+			});
+		style.
+			#shout{
+				position: fixed; 
+				top: calc(50% - -250px); 
+				left: calc(50% - -600px);
+			}
+		script(src='../assets/js/materialize.min.js')
+		script(src='../assets/js/scrip.js')
+		script(src='../assets/js/jquery.nicescrollforindex.js')
+		script(src='../assets/js/typed.js')
+		script(src='../assets/js/modal.js')
+		script(src='../assets/js/modal.min.js')
+		script.
+			function validateForm() {
+			
+			var x = document.forms["myForm"]["title"].value;
+			var y = document.forms["myForm"]["content"].value;
+			var w = x.length;
+			var z = y.length;
+			
+			if (x == "" && y != "") {
+			alert("Title is Required");
+			return false;
+			}
+			if (y == "" && x != "") {
+			alert("Content is Required");
+			return false;
+			}
+			if (y == "" && x == "") {
+			alert("Title and Content are Required");
+			return false;
+			}
+			if (w > 100) {
+			alert("Title Characters Exceeds Limitation!");
+			return false;
+			}
+			if (z > 500) {
+			alert("Content Characters Exceeds Limitation!");
+			return false;
+			}
+			if((x||y != "")&&(z <= 500)&& (w <= 100))
+			{
+				return true;
+			}
+			}
+			

@@ -1,0 +1,112 @@
+doctype html
+html(lang='en')
+	head
+		- var hasDuplicate = typeof query === 'string' ? '*Forum existing' : ''
+		- var hasSubduplicate = typeof subquery === 'string' ? '*SubForum existing' : ''
+		meta(charset='UTF-8')
+		title Forumula
+		link(rel='shortcut icon', href='../../../assets/shortcut.png')
+		link(rel='stylesheet', type='text/css', href='../../../assets/css/style.css')
+		link(rel='stylesheet', type='text/css', href='../../../assets/css/materialize.css')
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300', rel='stylesheet', type='text/css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+		link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		link(href='../../../assets/font-awesome-4.7.0/css/font-awesome.min.css', rel='stylesheet', type='text/css', media='all')
+		//Smooth Scrolling
+		style.
+			.header {
+			position: relative;
+			margin-bottom: -40px;
+			overflow: hidden;
+			}
+	body
+		ul#dropdown1.dropdown-content
+			li
+				a(href='http://localhost:3009/index/profile') Profile
+			
+			-if (puta.type === 'admin')
+				li
+					a(href='/index/admin') Admin Settings
+			li
+				a(href='/logout') Logout
+		nav.fixed
+			.nav-wrapper.pink.accent-4
+				.brand-logo
+						a(href='http://localhost:3009/index')
+							img(src="../../../assets/logo2.png" width="250")
+				ul#nav-mobile.right.hide-on-med-and-down
+					li
+						a(href='http://localhost:3009/index#content_2' style="font-family: century gothic;") Forums
+					li
+						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
+							| @#{puta.username}
+							i.material-icons.left person_pin
+		#content2.content
+			br
+			br
+			br
+			br
+			center
+				.container.login
+					h3(style="font-family: century gothic;") Edit Forum
+						if hasDuplicate || hasSubduplicate
+							p(style='font-family: century gothic; font-size: 20px; color: red;') #{hasDuplicate || hasSubduplicate}
+				br
+				br
+				.container.login(style="position:absolute; left: calc(50% - 470px); height: auto;")
+					.row
+						form(method="POST" id="myForm" onsubmit="return validateForm()" action=`/index/admin/editforum/save/${users.intCategoryID}`)
+							.input-field.col.s6
+								input#textarea2.materialize-textarea(name="categoryname" type='text' value = users.categoryname)
+								label(for='textarea2') Forum Name
+							.input-field.col.s12
+								input#textarea2.materialize-textarea(name="categorydes" type='text' value = users.categorydes)
+								label(for='textarea2') Forum Description
+								button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+									i.large.material-icons send
+		
+		script.
+			$('button').click(function(){
+			$('#fuck').toggleClass('closed');
+			});
+		// Import jQuery before materialize.js
+		script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script(type='text/javascript', src='../../../assets/js/materialize.min.js')
+		script(src='../../../assets/js/jquery.nicescroll.js')
+		script(src='../../../assets/js/smooth-scroll.js')
+		script.
+			smoothScroll.init();
+		script(type='text/javascript').
+			$('document').ready(function(){
+			$(".fuck").sideNav();
+			});
+		script(type='text/javascript').
+			$(document).ready(function(){
+			$("body").niceScroll();
+			
+			});
+		script(src='../../../assets/js/materialize.min.js')
+		script(src='../../../assets/js/scrip.js')
+		script(src='../../../assets/js/jquery.nicescrollforindex.js')
+		script(src='../../../assets/js/typed.js')
+		script.
+			$(document).ready(function() {
+			$('select').material_select();
+			});
+		script.
+			function validateForm() {
+
+			var w = document.forms["myForm"]["categoryname"].value;
+
+			if (w == '') {
+			alert("Forum Name is required!");
+			return false;
+			}
+			if(w != "")
+			{
+				alert("Changed Succesfully!");
+				return true;
+			}
+			}

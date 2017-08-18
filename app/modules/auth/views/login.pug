@@ -1,0 +1,31 @@
+html
+    head
+        title Forumula
+        link(rel='shortcut icon', href='../../../assets/shortcut.png')
+        link(rel="stylesheet" href="../assets/css/login.css")
+        script(src='../assets/js/style.js')
+    body
+        - var hasBan = typeof banned !== 'undefined' ? 'The user is banned.' : ''
+        - var hasIncorrect = typeof incorrect !== 'undefined' ? 'Incorrect username or password.' : ''
+        - var hasUnauthorized = typeof unauthorized !== 'undefined' ? 'You are not authorized to view the page you\'re trying to access. Please log in first.' : ''
+
+        video#video-background(autoplay='', loop='', muted='', plays-inline='')
+            source(src='../assets/empty spaces.mp4', type='video/mp4')     
+        .header.login(style="top: calc(50% - 230px); left: calc(50% - 150px);")
+            div
+                center
+                    img(src="../assets/logo2login.png" width="270" )
+                    if hasIncorrect || hasUnauthorized || hasBan
+                        strong
+                            p(style='font-size:13; color: red; text-align: center; font-style:bold;') #{hasIncorrect || hasUnauthorized || hasBan}
+        br
+        .login
+            form(method='POST' action="/login")
+                input(type='text', placeholder='username', name='username')
+                br
+                input(type='password', placeholder='password', name='pw')
+                br
+                input(type='submit', value='Login')
+                br
+            a.button.puta(type='button', href='http://localhost:3009/signup') 
+                center Sign Up!

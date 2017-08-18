@@ -1,0 +1,237 @@
+doctype html
+html(lang='en')
+	head
+		- var hasDuplicate = typeof query === 'string' ? '*Forum existing' : ''
+		- var hasSubduplicate = typeof subquery === 'string' ? '*SubForum existing' : ''
+		meta(charset='UTF-8')
+		title Forumula
+		link(rel='shortcut icon', href='../assets/shortcut.png')
+		link(rel='stylesheet', type='text/css', href='../assets/css/style.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/materialize.css')
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300', rel='stylesheet', type='text/css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+		link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		link(href='../assets/font-awesome-4.7.0/css/font-awesome.min.css', rel='stylesheet', type='text/css', media='all')
+		//Smooth Scrolling
+		style.
+			.header {
+			position: relative;
+			margin-bottom: -40px;
+			overflow: hidden;
+			}
+	body
+		ul#dropdown1.dropdown-content
+			li
+				a(href='http://localhost:3009/index/profile') Profile
+			
+			-if (puta.type === 'admin')
+				li
+					a(href='/index/admin') Admin Settings
+			li
+				a(href='/logout') Logout
+		nav
+			.nav-wrapper.pink.accent-4
+				.brand-logo
+						a(href='http://localhost:3009/index')
+							img(src="../assets/logo2.png" width="250")
+				ul#nav-mobile.right.hide-on-med-and-down
+					li
+						a(href='http://localhost:3009/index#content_2' style="font-family: century gothic;") Forums
+					li
+						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
+							| @#{puta.username}
+							i.material-icons.left person_pin
+		#content_2.content
+			br
+			center
+				.container.login
+					h3(style="font-family: century gothic;") Admin Page
+						if hasDuplicate || hasSubduplicate
+							p(style='font-family: century gothic; font-size: 20px; color: red;') #{hasDuplicate || hasSubduplicate}
+				br
+				br
+				.container.login(style="position:absolute; left: calc(50% - 470px); height: auto;")
+					h4(style="color: #c93f71") Forumula Maintainance
+					ul.collapsible.popout(data-collapsible='accordion')
+						li
+							.collapsible-header
+								i.material-icons(style="color: #c93f71") add
+								| Add Forum
+							.collapsible-body
+								.row
+									form(method="POST" id="myForm1" onsubmit="return validateForm1()" action='/index/admin/addforum')
+										.input-field.col.s6
+												input#textarea2.materialize-textarea(name="categoryname", type='text')
+												label(for='textarea2') Forum Name
+										.input-field.col.s12
+											input#textarea2.materialize-textarea(name="categorydes", type='text')
+											label(for='textarea2') Forum Description
+											button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+												i.large.material-icons send
+						li
+							.collapsible-header
+								i.material-icons(style="color:#c93f71") add
+								| Add SubForum
+							#addsub.collapsible-body
+								.row
+									form(method="POST" id="myForm2" onsubmit="return validateForm2()" action=`/index/admin/addsubforum`)
+										.input-field.col.s12
+											select(name='categoryname')
+												option(value='', disabled='', selected='') Choose a forum
+												-if(users.length)	
+													-for(var i=0; i<users.length; i++)
+														option(value=users[i].categoryname) #{users[i].categoryname}
+											label Forum
+										.input-field.col.s6
+											input#textarea2.materialize-textarea(name="subname", type='text')
+											label(for='textarea2') Subforum Name
+										.input-field.col.s12
+											input#textarea2.materialize-textarea(name="subdescription", type='text')
+											label(for='textarea2') Subforum Description
+											button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+												i.large.material-icons send
+						li
+							.collapsible-header
+								i.material-icons(style="color:#c93f71") create
+								| Edit Forum
+							.collapsible-body
+								.row
+									form(method="POST" id="myForm3" onsubmit="return validateForm3()" action=`/index/admin/editforum`)
+										.input-field.col.s12
+											select(name='categoryname')
+												option(value='', disabled='', selected='') Choose a forum
+												-if(users.length)	
+													-for(var i=0; i<users.length; i++)
+														option(value=users[i].categoryname) #{users[i].categoryname}
+											label Forum
+										button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+												i.large.material-icons send
+						li
+							.collapsible-header
+								i.material-icons(style="color:#c93f71") create
+								| Edit Subforum
+							.collapsible-body
+								.row
+									form(method="POST" id="myForm" onsubmit="return validateForm()" action=`/index/admin/editsubforum`)
+										.input-field.col.s12
+											select(name='subname')
+												-if(users.length)	
+													-for(var i=0; i<users.length; i++)
+														optgroup(label=`${users[i].categoryname}`)
+														-for(var x=0; x<subusers.length; x++)
+															-if (users[i].intCategoryID == subusers[x].intSubCategoryID)
+																option(value=subusers[x].subname) #{subusers[x].subname}
+											label Optgroups
+										button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+												i.large.material-icons send
+						li
+							.collapsible-header
+								i.material-icons(style="color: #c93f71") people
+								| Users Lounge
+							.collapsible-body
+								.row
+									form(method="POST" id="myForm4" onsubmit="return validateForm4()" action=`/index/admin/usermanip`)
+										.input-field.col.s12
+											select(name='isBan')
+												option(value='', disabled='', selected='') Users Status:
+												option(value='Active') Active
+												option(value='Banned') Banned
+											label Forum
+										button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+												i.large.material-icons send
+		script.
+			$('button').click(function(){
+			$('#fuck').toggleClass('closed');
+			});
+		// Import jQuery before materialize.js
+		script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+		script(type='text/javascript', src='../assets/js/materialize.min.js')
+		script(src='../assets/js/jquery.nicescroll.js')
+		script(src='../assets/js/smooth-scroll.js')
+		script.
+			smoothScroll.init();
+		script(type='text/javascript').
+			$('document').ready(function(){
+			$(".fuck").sideNav();
+			});
+		script(type='text/javascript').
+			$(document).ready(function(){
+			$("body").niceScroll();
+			
+			});
+		script(src='../assets/js/materialize.min.js')
+		script(src='../assets/js/scrip.js')
+		script(src='../assets/js/jquery.nicescrollforindex.js')
+		script(src='../assets/js/typed.js')
+		script.
+			$(document).ready(function() {
+			$('select').material_select();
+			});
+		script.
+			function validateForm1() {
+			var x = document.forms["myForm1"]["categoryname"].value;
+
+			if (x == "") {
+			alert("Forum Name is Required!");
+			return false;
+			}
+
+			if(x != "")
+			{
+				alert('Succesfully Added!')
+				return true;
+			}
+			}
+
+			function validateForm2() {
+			var f = document.forms["myForm2"]["categoryname"].value;
+			var y = document.forms["myForm2"]["subname"].value;
+			
+			if (y == "") {
+			alert("SubForum Name is Required!");
+			return false;
+			}
+
+			if (f == "") {
+			alert("Choose a forum!");
+			return false;
+			}
+			
+			if(y != "")
+			{
+				alert('Succesfully Added!')
+				return true;
+			}
+			}
+
+			function validateForm3() {
+
+			var z = document.forms["myForm3"]["categoryname"].value;
+
+			if (z == '') {
+			alert("Choose a Forum.");
+			return false;
+			}
+			if(z != "")
+			{
+				
+				return true;
+			}
+			}
+
+			function validateForm4() {
+
+			var w = document.forms["myForm4"]["isBan"].value;
+
+			if (w == '') {
+			alert("Choose a status");
+			return false;
+			}
+			if(w != "")
+			{
+				
+				return true;
+			}
+			}

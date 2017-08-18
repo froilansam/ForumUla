@@ -1,0 +1,57 @@
+doctype html
+html(lang='en')
+	head
+		title Forumula
+		link(rel='shortcut icon', href='../assets/shortcut.png')
+		link(rel='stylesheet', type='text/css', href='../assets/css/profile.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/profnav.css')
+		link(href='../assets/font-awesome-4.7.0/css/font-awesome.min.css', rel='stylesheet', type='text/css', media='all')
+	body
+		// this is the markup. you can change the details (your own name, your own avatar etc.) but don’t change the basic structure!
+		aside.profile-card
+			header
+				// here’s the avatar
+				
+				a(href='http://victory-design.ru/')
+					img(src=`../assets/uploads/${puta.image}`)
+				// the username
+				h1 #{puta.username}
+				// and role or location
+				h2 #{puta.email}
+			// bit of a bio; who are you?
+			.profile-bio
+				center
+					p(style="font-family: century gothic; color: #ff1493; font-size: 35px;") #{today}
+					br
+					br
+					br
+			// some social links to show off
+			ul.profile-social-links
+				// twitter - el clásico
+				li
+					a(href="http://localhost:3009/index")
+						button
+							i.fa.fa-arrow-left.fa-2x(style="color: #ff1493;")
+					
+
+				// envato – use this one to link to your marketplace profile
+				li
+					a(href='http://themeforest.net/user/Victory-Design')
+						svg(viewbox='0 0 24 24')
+							path(fill='#82B541', d='M55.12,68.532l51.606-51.614c2.738-2.734,2.738-7.173,0-9.911l-4.955-4.956c-2.737-2.736-7.173-2.736-9.91,0,L30.337,63.577c-2.736,2.736-2.736,7.173,0,9.911l61.524,61.523c2.737,2.737,7.173,2.737,9.91,0l4.955-4.955,c2.738-2.738,2.738-7.177,0-9.911L55.12,68.532z')
+				// codepen - your codepen profile
+				li
+					a(href=`http://localhost:3009/index/editprofile/${puta.username}`)
+						button
+							i.fa.fa-pencil-square-o.fa-2x(style="color: #ff1493;")
+				// add or remove social profiles as you see fit
+		// that’s all folks!
+		style.
+			button {
+			background-color: Transparent;
+			background-repeat:no-repeat;
+			border: none;
+			cursor:pointer;
+			overflow: hidden;
+			outline:none;
+			}

@@ -1,0 +1,367 @@
+doctype html
+html(lang='en')
+	head
+		meta(charset='UTF-8')
+		title Forumula
+		link(rel='shortcut icon', href='../assets/shortcut.png')
+		link(rel='stylesheet', type='text/css', href='../assets/css/style.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/animate.css')
+		link(rel='stylesheet', type='text/css', href='../assets/css/materialize.css')
+		link(href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300', rel='stylesheet', type='text/css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js')
+		link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css')
+		script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js')
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		link(href='../assets/font-awesome-4.7.0/css/font-awesome.min.css', rel='stylesheet', type='text/css', media='all')
+		style.
+			@font-face { 
+				font-family: Cubic; src: url('../assets/delta universe.ttf'); 
+				}
+		
+
+	body
+		#wall_1.image(data-stellar-background-ratio='0.5')
+			.header-caption(data-stellar-ratio='2', style='transform: translate3d(0px, 0px, 0px);')
+				.container
+					.box
+						h1  
+							img(src="../assets/logo4.png" width="600")
+						span.type
+			-if (today === today2 && puta.type === 'admin')
+				#backgroundblack.openedt
+				#modal1.modal.openedt
+					.modal-content
+						center
+							img(src='../assets/bday.png' height="200px")
+							h4(style='font-family: century gothic;') #{puta.username}!
+							p 
+					.modal-footer
+						a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Thank you!
+			-else if (today === today2)
+				#backgroundblack.openedt
+				#modal1.modal.openedt
+					.modal-content
+						center
+							img(src='../assets/bday.png' height="200px")
+							h4(style='font-family: century gothic;') #{puta.username}!
+							p 
+					.modal-footer
+						a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Thank you!
+			-else if (puta.type === 'admin')
+				#backgroundblack.openedt
+				#modal1.modal.openedt.animated.fadeIn
+					.modal-content
+						center
+							h4(style='font-family: century gothic;') Hello, Admin!
+							p 
+					.modal-footer
+						a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Close
+
+				// Dropdown Structure
+		ul#dropdown1.dropdown-content
+			li
+				a(href='http://localhost:3009/index/profile') Profile
+			
+			-if (puta.type === 'admin')
+				li
+					a(href='/index/admin') Admin Settings
+			li
+				a(href='/logout') Logout
+		nav
+			.nav-wrapper.pink.accent-4
+				.brand-logo
+						a(href='http://localhost:3009/index')
+							img(src="../assets/logo2.png" width="250")
+				ul#nav-mobile.right.hide-on-med-and-down
+					li
+						a(data-scroll='', href='#content_2' style="font-family: century gothic;") Forums
+					li
+						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
+							| @#{puta.username}
+							i.material-icons.left person_pin
+		#content_1.content
+			br
+			br
+			.container.login
+				.row
+					br
+					br
+					#info1.col.s4.wow.fadeInLeft(data-wow-offset="100", data-wow-delay='0s')
+						.center.promo.promo-example
+							i.large.material-icons(style="color: #c51162;") wifi
+							p.promo-caption Connect with Everyone
+							p.light.center
+								| This forum tends to connect the diverse people with diverse opinion about a certain subject.
+					#info2.col.s4.wow.fadeInLeft(data-wow-offset="100", data-wow-delay='1s')
+						.center.promo.promo-example
+							i.large.material-icons(style="color: #c51162;") public
+							p.promo-caption See the World
+							p.light.center
+								| Why they can't see what we can see? See the world in different perpective through somebody's mind. 
+					#info3.col.s4.wow.fadeInLeft(data-wow-offset="100", data-wow-delay='2s')
+						.center.promo.promo-example
+							i.large.material-icons(style="color: #c51162;") record_voice_over
+							p.promo-caption Voice Out Your Thoughts
+							p.light.center
+								| Freedom of speech at its finest. You can literally voice out what you want to say without boundaries and limitations.
+				//- h1 Heading
+				//- p
+				//- 	| Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+				//- p
+					//- | Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+			br
+			br
+		#wall_2.image(data-stellar-background-ratio='0.4')
+		#content_2.content
+			br
+			br
+			.container.login
+				center
+					h3(style="font-family: Cubic;") FORUMulas  
+						span
+							button.btn-floating.btn-large.waves-effect.waves-light.pink.accent-4
+								i.material-icons add
+				#fuck.closed
+					center
+						-if (users.length)
+							each user in users
+								.col.s12.m6
+									.card.grey.darken-3
+										.card-content.white-text
+											a.card-title(style="color:pink;" href=`http://localhost:3009/forum/${user.categoryname}`) #{user.categoryname}
+											p
+												| #{user.categorydes}
+						-else
+							h3(style='color: red; font-family: century gothic; font-size: 20px;') *Please ask administrator to add forum
+			
+			
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			br
+			.login(style="bottom: 0px; position: absolute; width: 98%;")
+				center
+					h3(style="font-family: Cubic;") Creators 
+					.carousel.wow.fadeInDown(data-wow-offset="10", data-wow-delay='0s')
+						a.carousel-item(href='#Froilan')
+							img(src='../assets/froilan.jpg')
+							p.wow.fadeInDown Malibiran, Froilan Sam
+						a.carousel-item(href='#Fritz')
+							img(src='../assets/fritz.jpg')
+							p.wow.fadeInDown Santuico, Fritz Jerold
+						a.carousel-item(href='#Kobi')
+							img(src='../assets/kobi.jpg')
+							p.wow.fadeInDown Figura, Chloie Ann
+						a.carousel-item(href='#sherwin')
+							img(src='../assets/sherwin.png')
+							p.wow.fadeInDown Aydalla, Sherwin
+						
+		
+		script.
+			$('.modal-action').click(function(){
+			$('#modal1').toggleClass('closedt');
+			$('#backgroundblack').toggleClass('closedt');
+			});
+
+			$(document).ready(function(){
+			$('.carousel').carousel();
+			});
+		style.
+			.openedt{
+				z-index: 1003; 
+				display: block; 
+				opacity: 1;
+				transform: 
+				scaleX(1); 
+				top: 10%;
+			}
+			.footer {
+			position:relative;
+			bottom:0;
+			
+			}
+		style.
+			#backgroundblack{
+				position: fixed;
+				opacity: 0.5;
+				height: 1000px;
+				z-index: 1002; 
+				width: 10000px;
+				background-color: black;
+				top: -100px;
+			}
+		script.
+			$('button').click(function(){
+			$('#fuck').toggleClass('closed');
+			$('#fuck').toggleClass('animated fadeInDown');
+			});
+		script(src='../assets/js/materialize.min.js')
+		script(src='../assets/js/jquery.stellar.js')
+		script(src='../assets/js/smooth-scroll.js')
+		script(src='../assets/js/scrip.js')
+		script(src='../assets/js/jquery.nicescrollforindex.js')
+		script(src='../assets/js/typed.js')
+		script(src='../assets/js/wow.min.js')
+		script.
+			new WOW().init();
+		//Smooth Scrolling
+		script.
+			smoothScroll.init();
+		// Sticky Nav Bar 
+		script.
+			$(document).ready(function(){
+			var navOffset = $('nav').offset().top;
+			$('nav').wrap('<div class="nav-placeholder"></div>');
+			$('.nav-placeholder').height($('nav').outerHeight());
+			$(window).scroll(function(){
+				var scrollPos = $(window).scrollTop();
+				if (scrollPos>= navOffset){
+					$('nav').addClass('fixed');
+				}
+				else{
+					$('nav').removeClass('fixed');
+				}
+			});
+			
+			});
+
+			
+		//Typed
+		script.
+			$(function(){
+				$('.type').typed({
+					strings: [
+						'Let us escape this world of Panopticon',
+						'You are not alone',
+						'Join a Forum',
+						'This is our website where we talk about anything we want',
+						'Because this is our website',
+						'Not yours',
+						'',
+						'',
+						'',
+						'This is a requirement',
+						'For Midterm',
+						'of Advance Programming',
+						'Our funeral will be after passing this midterm',
+						'Cause of death: Javascript',
+						'Hello, sir Bule!'
+					],
+					loop: true
+				})
+			})
+		//Parallax
+		script.
+			$(document).ready(function(){
+			$(window).stellar();
+			});
+		//Typed Style
+		style.
+			.header {
+			position: relative;
+			margin-bottom: -40px;
+			overflow: hidden;
+			}
+
+			.header:before {
+				top: 0;
+				position: absolute;
+				display: block;
+				width: 100%;
+				height: 100%;
+				content: "";
+				background: rgba(0, 0, 0, 0.2);
+				z-index: 30;
+			}
+
+			.header-caption {
+				position: absolute;
+				bottom: 20%;
+				width: 100%;
+				z-index: 40;
+			}
+
+			.header-caption .box {
+				padding: 1.5rem 3rem;
+				border-width: 0 0 0 3px;
+				border-style: solid;
+			}
+			.header-caption .box h1 {
+				font-family: 'PT Sans Caption', sans-serif;
+				margin: 0 0 1rem 0;
+				font-weight: 700;
+				color: #fff;
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+				font-size: 100px;
+			}
+
+			.header-caption .box span {
+				font-size: 4rem;
+				line-height: 1em;
+				color: #fff;
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			}
+
+			.header-background {
+				position: relative;
+				height: 700px;
+				overflow: hidden;
+				z-index: 10;
+			}
+
+			.header-background .slides { height: 100%; }
+			.header-background .slides > li { height: 100%; }
+
+			.header-background .slides img {
+				position: absolute;
+				width: 100%;
+				min-width: 1200px;
+				left: 50%;
+				top: 50%;
+			}
+			.header-caption .box h1 {
+			font-family: 'PT Sans Caption', sans-serif;
+			margin: 0 0 1rem 0;
+			font-weight: 700;
+			color: #fff;
+			text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			font-size: 100px;
+			}
+			.header-caption .box span {
+				font-family: century gothic;
+				font-size: 4rem;
+				line-height: 1em;
+				color: #fff;
+				text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+			}
+			.closedt{
+				display: none;
+			}
+
+		
+
+
+					
