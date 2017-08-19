@@ -1,9 +1,12 @@
+# ForumUla
+A Forum Site where users can talk anything they want.
+
 # Main Page
 >localhost:3009/index
 
-## This requires an internet connection because of css and jquery links
+**This requires an internet connection because of css and jquery links
 
-## Features
+## Features!
 1. The Requirements
 2. Subforum
 3. Adding and Editing Subforum
@@ -17,7 +20,7 @@
 11. Private Messages
 
 
-Other Feature
+# Other Feature!
 1. Uploading Photo.
 
 ## Database
