@@ -1,5 +1,5 @@
 # ForumUla
-A forum site which we created for users so that they can talk anything they want, because this is our forum site, and not yours.
+A forum site which we created for users so that they can talk about anything they want. It is a discussion site where people can hold conversations in the form of posted messages about certain topic.
 
 ## Main Page
 >localhost:3009/index
