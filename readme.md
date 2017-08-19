@@ -19,7 +19,7 @@ localhost:3009/index
 
 
 ### Other Feature!
-1. Uploading Photo.
+1. Uploading Photo. 
 
 
 ### Note
