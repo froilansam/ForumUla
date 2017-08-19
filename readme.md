@@ -25,8 +25,8 @@ A forum site which we created for users so that they can talk anything they want
 ### Note
     *This requires an internet connection because of css and jquery links
     *The default Admin Credential is: 
-    >Username: **admin 
-    >Password: **password
+    >Username: admin 
+    >Password: password
 
 ## Database
 
