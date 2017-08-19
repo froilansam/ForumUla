@@ -31,25 +31,31 @@ var subforumRouter = express.Router();
 
 var category ="";
 
+//Middleware
 var authMiddleware = require('../auth/middlewares/auth');
 
 router.use(authMiddleware.hasAuth);
 
+// For index Page
 var indexController = require('./controllers/index');
 router.get('/', indexController);
 
+
+//For Admin Page
 var indexadminController = require('./controllers/indexadmin');
 router.get('/admin', authMiddleware.AdminAuth, indexadminController);
 
+
+//POST for Add Forum
 router.post('/admin/addforum', (req, res) => {
     var db = require('../../lib/database')();
     var categoryname = req.body.categoryname;
     var categorydes = req.body.categorydes;
 
     console.log(categoryname +' '+ categorydes);
-    const queryString = `INSERT INTO category (categoryname, categorydes) VALUES (?, ?)`
+    const queryString = `INSERT INTO category (categoryname, categorydes, isMod) VALUES (?, ?, ?)`
 
-    db.query(queryString, [req.body.categoryname, req.body.categorydes],  function (err, results, fields) {
+    db.query(queryString, [req.body.categoryname, req.body.categorydes, req.body.isMod],  function (err, results, fields) {
         if (err) return res.redirect('/index/admin?forum=duplicate');
         
         console.log(results);
@@ -58,6 +64,7 @@ router.post('/admin/addforum', (req, res) => {
     });
 });
 
+//POST for Add Subform
 router.post('/admin/addsubforum', (req, res) => {
     var db = require('../../lib/database')();
     const queryString = 'SELECT * FROM category WHERE categoryname = ?';
@@ -73,6 +80,7 @@ router.post('/admin/addsubforum', (req, res) => {
     });
 });
 
+//For edit forum page
 router.get('/admin/editforum/:name', authMiddleware.AdminAuth, (req, res) => {
     var db = require('../../lib/database')();
     const queryString = 'SELECT * FROM category WHERE categoryname = ?';
@@ -85,21 +93,25 @@ router.get('/admin/editforum/:name', authMiddleware.AdminAuth, (req, res) => {
     });
     
 });
+
+//POST for edit forum page
 router.post('/admin/editforum', (req, res) => {
     console.log('fuck'+req.body.categoryname)
     res.redirect('/index/admin/editforum/'+ req.body.categoryname);
 });
 
+//POST for edit forum
 router.post('/admin/editforum/save/:id', (req, res) => {
     var db = require('../../lib/database')();
-    const queryString = `UPDATE category SET categoryname = ?, categorydes = ? WHERE intCategoryID = ?`;
-    db.query(queryString, [req.body.categoryname, req.body.categorydes, req.params.id],  function (err, results, fields) {
+    const queryString = `UPDATE category SET categoryname = ?, categorydes = ?, isMod = ? WHERE intCategoryID = ?`;
+    db.query(queryString, [req.body.categoryname, req.body.categorydes, req.body.isMod, req.params.id],  function (err, results, fields) {
         if (err) return res.redirect('/index/admin/editforum/'+ req.session.categoryname+'?forum=duplicate');
 
         res.redirect('/index/admin');
     });
 });
 
+//for edit subforum
 router.get('/admin/editsubforum/:name', authMiddleware.AdminAuth, (req, res) => {
     var db = require('../../lib/database')();
     const queryString = 'SELECT * FROM sub WHERE subname = ?';
@@ -112,11 +124,15 @@ router.get('/admin/editsubforum/:name', authMiddleware.AdminAuth, (req, res) => 
     });
     
 });
+
+//post for edit subforum
 router.post('/admin/editsubforum', (req, res) => {
     console.log('fuck'+req.body.subname)
     res.redirect('/index/admin/editsubforum/'+ req.body.subname);
 });
 
+
+//post for saving edited subforum
 router.post('/admin/editsubforum/save/:id', (req, res) => {
     var db = require('../../lib/database')();
     const queryString = `UPDATE sub SET subname = ?, subdescription = ? WHERE intSubID = ?`;
@@ -127,6 +143,7 @@ router.post('/admin/editsubforum/save/:id', (req, res) => {
     });
 });
 
+//for user lounge
 router.get('/admin/usermanip/:id/:ban', (req, res) => {
     var db = require('../../lib/database')();
     const queryString = `UPDATE user SET isBan = ? WHERE id = ?`;
@@ -137,6 +154,47 @@ router.get('/admin/usermanip/:id/:ban', (req, res) => {
     });
 });
 
+//Updating role
+router.get('/mod/:id/:state', (req, res) => {
+    console.log('FUCK!');
+    var db = require('../../lib/database')();
+    var parameter = req.params.id;
+    var state = req.params.state;
+    const queryString = 'SELECT * FROM user WHERE id = ?'
+    db.query(queryString, [parameter],  function (err, results, fields) {
+        if (err) return res.send(err);
+        
+        var userResult = results[0];
+
+        if(userResult.isMod == 0){
+            const queryString = `UPDATE user SET isMod = ? WHERE id = ?`;
+            var db = require('../../lib/database')();
+            db.query(queryString, [1, parameter],  function (err, results, fields) {
+                if (err) return res.send(err);
+
+
+               res.redirect(`/index/admin/usermanip/${state}`);
+            });
+        }
+        else if(userResult.isMod == 1){
+            const queryString = `UPDATE user SET isMod = ? WHERE id = ?`;
+            var db = require('../../lib/database')();
+            db.query(queryString, [0, parameter],  function (err, results, fields) {
+                if (err) return res.send(err);
+
+                res.redirect(`/index/admin/usermanip/${state}`);
+            });
+        }
+
+        
+    });
+    
+});
+
+
+
+
+//For viewing users whi is banned or active
 router.get('/admin/usermanip/:state', (req, res) => {
     var db = require('../../lib/database')();
     const queryString = `SELECT * FROM user WHERE isBan = ? AND type = 'normal'`;
@@ -199,12 +257,15 @@ router.get('/admin/usermanip/:state', (req, res) => {
     
 });
 
+//For Userlounge page
 router.post('/admin/usermanip', (req, res) => {
     var state = req.body.isBan;
     req.session.state = state;
     res.redirect(`/index/admin/usermanip/${state}`);
 });
 
+
+//Profile
 router.get('/profile', (req, res) => {
 
 	var puta= req.session.user;
@@ -225,6 +286,49 @@ router.get('/profile', (req, res) => {
 
 	today = mm + '•' + dd + '•' + yyyy;
     res.render('home/views/profile', {puta: puta, today: today});
+});
+
+router.get('/messages', (req, res) => {
+
+	var puta= req.session.user;
+	var db = require('../../lib/database')();
+    const queryString = `SELECT * FROM message WHERE receiver = ? ORDER BY sender`;
+    db.query(queryString, [puta.username],  function (err, active, fields) {
+        if(err) return res.send(err);
+        
+        res.render('home/views/chatPage', {puta: puta, active: active});
+    });
+    
+});
+
+router.get('/messages/:sender', (req, res) => {
+    var userMessage = req.params.sender;
+    var puta= req.session.user;
+
+	var db = require('../../lib/database')();
+    const queryString = `SELECT * FROM forum.message WHERE (receiver = ? OR receiver = ?) AND (sender = ? OR sender = ?)`;
+    db.query(queryString, [puta.username, userMessage, puta.username, userMessage],  function (err, active, fields) {
+        if(err) return res.send(err);
+        console.log('tieitieitie')
+        console.log(active)
+        console.log('tieitieitie')
+        res.render('home/views/chat', {puta: puta, active: active, userMessage: userMessage});
+    });
+    
+});
+
+router.post('/messages/:receiver', (req, res) => {
+    var userMessage = req.params.receiver;
+    var puta= req.session.user;
+
+	var db = require('../../lib/database')();
+    const queryString = 'INSERT INTO message (messageContent, sender, receiver) VALUES (?, ?, ?)'
+    db.query(queryString, [req.body.messageContent, puta.username, userMessage],  function (err, active, fields) {
+        if(err) return res.send(err);
+
+        res.redirect(`/index/messages/${userMessage}`);
+    });
+    
 });
 
 router.get('/profile/:username', (req, res) => {
@@ -276,6 +380,10 @@ router.get('/editprofile/:username', (req, res) => {
     	res.render('home/views/editprofile', {puta: active[0], year: yyyy, query: req.query.user});
     });
 });
+
+router.get('/fuck', (req, res) => {
+    res.render('home/views/chat');
+})
 
 router.post('/editprofile/:username', upload.single('imagefile'), (req, res) => {
         var db = require('../../lib/database')();

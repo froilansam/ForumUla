@@ -231,6 +231,10 @@ html
 			var z = document.forms["myForm"]["pw"].value;
 			var v = document.forms["myForm"]["bday"].value;
 			var w = document.forms["myForm"]["year"].value;
+			if(x.match("/")||x.match('"')||x.match('=')){
+			alert("Some special characters are not allowed.");
+			return false;
+			}
 			if (x == "") {
 			alert("Username is Required!");
 			return false;

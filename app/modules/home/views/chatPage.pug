@@ -48,23 +48,25 @@ html(lang='en')
 				br
 				.container.login
 					center
-						h3(style="color:black; font-family: century gothic;") #{categName}'s Subforum   
+						h3(style="color:black; font-family: century gothic;") My Messages 
 							span
 								button.btn-floating.btn-large.waves-effect.waves-light.pink.accent-4
 									i.material-icons add
 					#fuck.closed
-						- if (users.length)
-							each user in users
-								center
-									.animated.fadeInDown.col.s12.m6
-										.card.grey.darken-3
-											.card-content.white-text
-												a.card-title(style="color:pink;" href=`http://localhost:3009/subforum/${user.subname}`) #{user.subname}
-												p
-													| #{user.subdescription}
+						-var name = ""
+						- if (active.length)
+							-for(var i = 0; i<active.length; i++)
+								- nameTemp = active[i].sender
+								-if (name != nameTemp)
+									- name = nameTemp;
+									center
+										.animated.fadeInDown.col.s12.m6
+											.card.grey.darken-3
+												.card-content.white-text
+													a.card-title(style="color:pink;" href=`http://localhost:3009/index/messages/${nameTemp}`) #{nameTemp} 
 						- else
 							center
-								p.animated.fadeInDown(style="color: red; font-family: century gothic;") No SubForum yet.
+								p.animated.fadeInDown(style="color: red; font-family: century gothic;") No Messages Yet.
 				br
 				br
 		script.

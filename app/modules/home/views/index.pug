@@ -1,6 +1,7 @@
 doctype html
 html(lang='en')
 	head
+		- var x = 0;
 		meta(charset='UTF-8')
 		title Forumula
 		link(rel='shortcut icon', href='../assets/shortcut.png')
@@ -28,8 +29,8 @@ html(lang='en')
 							img(src="../assets/logo4.png" width="600")
 						span.type
 			-if (today === today2 && puta.type === 'admin')
-				#backgroundblack.openedt
-				#modal1.modal.openedt
+				#backgroundblack.openedt(style="z-index: 10000;")
+				#modal1.modal.openedt(style="z-index: 10000;")
 					.modal-content
 						center
 							img(src='../assets/bday.png' height="200px")
@@ -38,8 +39,8 @@ html(lang='en')
 					.modal-footer
 						a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Thank you!
 			-else if (today === today2)
-				#backgroundblack.openedt
-				#modal1.modal.openedt
+				#backgroundblack.openedt(style="z-index: 10000;")
+				#modal1.modal.openedt(style="z-index: 10000;")
 					.modal-content
 						center
 							img(src='../assets/bday.png' height="200px")
@@ -48,8 +49,8 @@ html(lang='en')
 					.modal-footer
 						a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href='#!') Thank you!
 			-else if (puta.type === 'admin')
-				#backgroundblack.openedt
-				#modal1.modal.openedt.animated.fadeIn
+				#backgroundblack.openedt(style="z-index: 10000;")
+				#modal1.modal.openedt.animated.fadeIn(style="z-index: 10000;")
 					.modal-content
 						center
 							h4(style='font-family: century gothic;') Hello, Admin!
@@ -75,6 +76,8 @@ html(lang='en')
 				ul#nav-mobile.right.hide-on-med-and-down
 					li
 						a(data-scroll='', href='#content_2' style="font-family: century gothic;") Forums
+					li
+						a(href='/index/messages' style="font-family: century gothic;") Messages
 					li
 						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
 							| @#{puta.username}
@@ -124,13 +127,24 @@ html(lang='en')
 				#fuck.closed
 					center
 						-if (users.length)
-							each user in users
-								.col.s12.m6
-									.card.grey.darken-3
-										.card-content.white-text
-											a.card-title(style="color:pink;" href=`http://localhost:3009/forum/${user.categoryname}`) #{user.categoryname}
-											p
-												| #{user.categorydes}
+							-for(var i = 0; i < users.length; i++)
+								-if(users[i].isMod == 0)
+									.col.s12.m6
+										.card.grey.darken-3
+											.card-content.white-text
+												a.card-title(style="color:pink;" href=`http://localhost:3009/forum/${users[i].categoryname}`) #{users[i].categoryname}
+												p
+													| #{users[i].categorydes}
+								-else if (users[i].isMod == 1 && puta.isMod == 1)
+									-if(x == 0)
+										h1(style='font-family: cubic;') For Moderators Only
+										- x = 1
+									.col.s12.m6
+										.card.grey.darken-3
+											.card-content.white-text
+												a.card-title(style="color:pink;" href=`http://localhost:3009/forum/${users[i].categoryname}`) #{users[i].categoryname}
+												p
+													| #{users[i].categorydes}
 						-else
 							h3(style='color: red; font-family: century gothic; font-size: 20px;') *Please ask administrator to add forum
 			

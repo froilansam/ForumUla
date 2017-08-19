@@ -30,7 +30,6 @@ loginRouter.route('/')
             
             
             var user = results[0];
-            
             if (user.isBan == 1) return res.redirect('/login?banned');
 
             if (user.pw !== req.body.pw) return res.redirect('/login?incorrect');

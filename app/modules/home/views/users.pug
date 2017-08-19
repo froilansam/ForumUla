@@ -38,6 +38,8 @@ html(lang='en')
 					li
 						a(href='http://localhost:3009/index#content_2' style="font-family: century gothic;") Forums
 					li
+						a(href='/index/messages' style="font-family: century gothic;") Messages
+					li
 						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
 							| @#{puta.username}
 							i.material-icons.left person_pin
@@ -69,7 +71,15 @@ html(lang='en')
 												p #{users[i].email}
 												p #{users[i].bday}
 												p Current State: #{state}
-
+												-if (users[i].isMod == 1)
+													p Role: Moderator
+												-else
+													p Role: Normal User
+											.card-action
+												-if (users[i].isMod == 0 && users[i].isBan == 0)
+													a.btn.waves-effect.waves-light.green(href=`/index/mod/${users[i].id}/Active`) Make this user Moderator
+												-else if (users[i].isMod == 1 && users[i].isBan == 0)
+													a.btn.waves-effect.waves-light.blue(href=`/index/mod/${users[i].id}/Active`) Make this user Normal User
 
 		script.
 			$('button').click(function(){

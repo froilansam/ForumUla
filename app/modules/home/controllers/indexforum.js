@@ -26,11 +26,16 @@ module.exports = (req, res) => {
         /**
          * Temporarily, if there are errors, send the error as is.
          */
-        
         if (err) return res.send(err);
-        console.log(results);
+        console.log('puta')
+        console.log(typeof results[0]);
         var puta = req.session.user;
-        
+        if (typeof results[0] === 'undefined'){
+            render(results, puta);
+        }
+        else{
+            if (puta.isMod == 0 && results[0].isMod == 1) return res.redirect ('/index');
+        }
         /**
          * If there are no errors, pass the results (which is an array) to the
          * render function.

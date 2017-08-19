@@ -34,11 +34,13 @@ html(lang='en')
 		nav
 			.nav-wrapper.pink.accent-4
 				.brand-logo
-						a(href='http://localhost:3009/index')
-							img(src="../assets/logo2.png" width="250")
+					a(href='http://localhost:3009/index')
+						img(src="../assets/logo2.png" width="250")
 				ul#nav-mobile.right.hide-on-med-and-down
 					li
 						a(href='http://localhost:3009/index#content_2' style="font-family: century gothic;") Forums
+					li
+						a(href='/index/messages' style="font-family: century gothic;") Messages
 					li
 						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
 							| @#{puta.username}
@@ -68,6 +70,12 @@ html(lang='en')
 										.input-field.col.s12
 											input#textarea2.materialize-textarea(name="categorydes", type='text')
 											label(for='textarea2') Forum Description
+										.input-field.col.s6
+											select(name='isMod')
+												option(value='', disabled='', selected='') Choose a Role
+												option(value=0) For All
+												option(value=1) For Moderators
+										.col.s12
 											button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
 												i.large.material-icons send
 						li
@@ -172,13 +180,19 @@ html(lang='en')
 		script.
 			function validateForm1() {
 			var x = document.forms["myForm1"]["categoryname"].value;
+			var y = document.forms["myForm1"]["isMod"].value;
 
 			if (x == "") {
 			alert("Forum Name is Required!");
 			return false;
 			}
 
-			if(x != "")
+			if (y == "") {
+			alert("Role is Required!");
+			return false;
+			}
+
+			if(x&&y != "")
 			{
 				alert('Succesfully Added!')
 				return true;

@@ -1,0 +1,54 @@
+html
+	head
+		title Forumula
+		link(rel='shortcut icon', href='../../../assets/shortcut.png')
+		link(rel='stylesheet', type='text/css', href='../../assets/css/chat.css')
+		link(rel='stylesheet', type='text/css', href='../../assets/css/materialize.css')
+		link(rel='stylesheet', type='text/css', href='../../assets/css/style.css')
+		link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+		script(src='../../assets/js/chat.js')
+		script(src='../../assets/js/materialize.min.js')
+		style.
+			@font-face { 
+				font-family: Cubic; src: url('../assets/delta universe.ttf'); 
+				}
+	body
+		center
+			br
+			br
+			br
+			br
+			.container.login(style='width: 70%; position: relative;')
+				br
+				p(style='font-family: cubic; font-size: 50px; color: #c51162') #{userMessage}
+				-if(active.length)
+					-for (var i = 0; i<active.length; i++)
+						-if (active[i].sender == puta.username)
+							.bubble.bubble-alt.green
+								p #{active[i].messageContent}
+						-else if (active[i].sender == userMessage)
+							.bubble
+								p #{active[i].messageContent}
+				form(id="myForm" onsubmit="return validateForm()" method='POST' action=`/index/messages/${userMessage}`)
+					.input-field.col.s12
+						input#textarea1.materialize-textarea( name="messageContent", type='text', Placeholder = 'Message')
+						button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
+							i.large.material-icons send
+					.input-field.col.s12
+						a.button.waves-effect.pink.btn-large(href="/index/messages")
+							i.large.material-icons arrow_back
+		script.
+			function validateForm() {
+			
+			var w = document.forms["myForm"]["messageContent"].value;
+
+			if (w == '') {
+			alert("Please Type a Message!");
+			return false;
+			}
+			if(w != "")
+			{
+				alert("Sent Succesfully!");
+				return true;
+			}
+			}

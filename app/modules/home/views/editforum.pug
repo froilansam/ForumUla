@@ -40,6 +40,8 @@ html(lang='en')
 					li
 						a(href='http://localhost:3009/index#content_2' style="font-family: century gothic;") Forums
 					li
+						a(href='/index/messages' style="font-family: century gothic;") Messages
+					li
 						a.dropdown-button(href='#!', data-activates='dropdown1' style="font-family: century gothic;")
 							| @#{puta.username}
 							i.material-icons.left person_pin
@@ -64,9 +66,18 @@ html(lang='en')
 							.input-field.col.s12
 								input#textarea2.materialize-textarea(name="categorydes" type='text' value = users.categorydes)
 								label(for='textarea2') Forum Description
+							.input-field.col.s6
+								select(name='isMod')
+									-if (users.isMod == 1)
+										option(value=0) For All
+										option(value=1, selected='') For Moderators
+									-else
+										option(value=0, selected='') For All
+										option(value=1) For Moderators
+							.col.s12
 								button.waves-effect.pink.btn-large(type='submit', name='submit' value='Save')
 									i.large.material-icons send
-		
+		 
 		script.
 			$('button').click(function(){
 			$('#fuck').toggleClass('closed');
@@ -106,7 +117,6 @@ html(lang='en')
 			}
 			if(w != "")
 			{
-				alert("Changed Succesfully!");
 				return true;
 			}
 			}
