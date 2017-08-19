@@ -21,6 +21,11 @@ A forum site which we created for users so that they can talk anything they want
 ### Other Feature!
 1. Uploading Photo. 
 
+## Creators:
+1. Malibiran, Froilan Sam S.
+2. Santuico, Fritz Jerold
+3. Figura, Chloie Ann R.
+4. Aydalla, Sherwin G.
 
 ### Note
     *This requires an internet connection because of css and jquery links
@@ -108,8 +113,3 @@ A forum site which we created for users so that they can talk anything they want
 
 
 
-## Creators:
-1. Malibiran, Froilan Sam S.
-2. Santuico, Fritz Jerold
-3. Figura, Chloie Ann R.
-4. Aydalla, Sherwin G.
