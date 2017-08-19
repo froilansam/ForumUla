@@ -1,10 +1,8 @@
 # ForumUla
-A Forum Site where users can talk anything they want.
+A forum site which we created for users so that they can talk anything they want, because this is our forum site, and not yours.
 
-# Main Page
+## Main Page
 >localhost:3009/index
-
-**This requires an internet connection because of css and jquery links
 
 ## Features!
 1. The Requirements
@@ -20,8 +18,12 @@ A Forum Site where users can talk anything they want.
 11. Private Messages
 
 
-# Other Feature!
+### Other Feature!
 1. Uploading Photo.
+
+
+### Note
+**This requires an internet connection because of css and jquery links
 
 ## Database
 
