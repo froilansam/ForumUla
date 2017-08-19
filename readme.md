@@ -2,7 +2,7 @@
 A forum site which we created for users so that they can talk anything they want, because this is our forum site, and not yours.
 
 ## Main Page
->localhost:3009/index
+localhost:3009/index
 
 ## Features!
 1. The Requirements
