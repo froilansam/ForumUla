@@ -5,21 +5,21 @@ A forum site which we created for users so that they can talk about anything the
 >localhost:3009/index
 
 ## Features!
-1. The Requirements
-2. Subforum
-3. Adding and Editing Subforum
-4. Ban/Unban User
-5. Birthday Greeting
-6. View Profile
-7. Edit Profile
-8. View other Profile (Click on the Other users name.)
-9. Additional Role
-10. Additional Role Secret Forum (They are the ones who can only see)
-11. Private Messages
+* The Requirements
+* Subforum
+* Adding and Editing Subforum
+* Ban/Unban User
+* Birthday Greeting
+* View Profile
+* Edit Profile
+* View other Profile (Click on the Other users name.)
+* Additional Role
+* Additional Role Secret Forum (They are the ones who can only see)
+* Private Messages
 
 
 ### Other Feature!
-1. Uploading Photo. 
+* Uploading Photo. 
 
 ## Creators:
 1. Malibiran, Froilan Sam S.
