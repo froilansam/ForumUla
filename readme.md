@@ -23,7 +23,10 @@ A forum site which we created for users so that they can talk anything they want
 
 
 ### Note
->This requires an internet connection because of css and jquery links
+    *This requires an internet connection because of css and jquery links
+    *The default Admin Credential is: 
+    >Username: **admin 
+    >Password: **password
 
 ## Database
 
@@ -105,7 +108,7 @@ A forum site which we created for users so that they can talk anything they want
 
 
 
-## Submitted by:
+## Creators:
 1. Malibiran, Froilan Sam S.
 2. Santuico, Fritz Jerold
 3. Figura, Chloie Ann R.
