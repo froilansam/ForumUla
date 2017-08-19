@@ -12,7 +12,7 @@ A forum site which we created for users so that they can talk anything they want
 5. Birthday Greeting
 6. View Profile
 7. Edit Profile
-8. View other Profile
+8. View other Profile (Click on the Other users name.)
 9. Additional Role
 10. Additional Role Secret Forum (They are the ones who can only see)
 11. Private Messages
