@@ -20,6 +20,7 @@ A forum site which we created for users so that they can talk about anything the
 
 ### Other Feature!
 * Uploading Photo. 
+* Soft Deletion
 
 ## Creators:
 1. Malibiran, Froilan Sam S.
