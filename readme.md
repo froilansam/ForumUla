@@ -28,10 +28,10 @@ A forum site which we created for users so that they can talk about anything the
 4. Aydalla, Sherwin G.
 
 ### Note
-    ** This requires an internet connection because of css and jquery links
-    * The default Admin Credential is: 
-    >Username: admin 
-    >Password: password
+** This requires an internet connection because of css and jquery links
+* The default Admin Credential is: 
+>Username: admin 
+>Password: password
 
 ## Database
 
