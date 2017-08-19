@@ -39,13 +39,13 @@ A forum site which we created for users so that they can talk about anything the
 >Execute the SQL File named 'mydb.sql' in MySQL Workbench or MySQL Server.
 
 ## Database Structure
-
+* Create a Database
 >CREATE DATABASE `forum` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 
 >USE `forum`;
 
-
+* Table: category
 >CREATE TABLE `category` (
 
  > `intCategoryID` int(11) NOT NULL AUTO_INCREMENT,
@@ -62,7 +62,7 @@ A forum site which we created for users so that they can talk about anything the
 
 >) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8;
 
-
+* Table: sub
 >CREATE TABLE `sub` (
 
 >  `intSubID` int(11) NOT NULL AUTO_INCREMENT,
@@ -82,7 +82,7 @@ A forum site which we created for users so that they can talk about anything the
 
 >) ENGINE=InnoDB AUTO_INCREMENT=1254 DEFAULT CHARSET=utf8;
 
-
+* Table: user
 >CREATE TABLE `user` (
 
 >  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -111,7 +111,7 @@ A forum site which we created for users so that they can talk about anything the
 
 >) ENGINE=InnoDB AUTO_INCREMENT=98 DEFAULT CHARSET=utf8;
 
-
+* Table: message
 >CREATE TABLE `message` (
 
 >  `intMesID` int(11) NOT NULL AUTO_INCREMENT,
@@ -134,7 +134,7 @@ A forum site which we created for users so that they can talk about anything the
 
 >) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
-
+* Table: post
 >CREATE TABLE `post` (
 
 >  `intPostID` int(11) NOT NULL AUTO_INCREMENT,
@@ -164,7 +164,7 @@ A forum site which we created for users so that they can talk about anything the
 >) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
 
 
-
+* Inserting Admin Credentials
 >INSERT INTO `forum`.`user` (`username`, `email`, `pw`, `bday`, `type`, `isBan`, `image`, `isMod`) VALUES ('admin', 'admin@example.com', 'password', '1998-12-11', 'admin', '0', 'admin.jpg', '1');
 
 
