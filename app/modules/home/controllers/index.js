@@ -25,7 +25,7 @@ module.exports = (req, res) => {
      * If the database part is enabled, then use the database module to query
      * from the database specified in your .env file.
      */
-    db.query(`SELECT * FROM category`, function (err, results, fields) {
+    db.query(`SELECT * FROM category ORDER by isMod`, function (err, results, fields) {
         /**
          * Temporarily, if there are errors, send the error as is.
          */
